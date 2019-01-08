@@ -5,24 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - NetCore.Web</title>
 
+    <script src="~/components/webcomponentsjs/webcomponents.js"></script>
+
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/bootstrap-tables.css" />
+
+    <link rel="import" href="~/components/polymer/polymer.html" />
+    <link rel="import" href="~/components/iron-icons/iron-icons.html" />
+    <link rel="import" href="~/components/iron-icon/iron-icon.html" />
+    <link rel="import" href="~/components/xenon-layout/nav-item.html" />
+    <link rel="import" href="~/components/xenon-layout/xenon-layout.html" />
+
 </head>
 <body>
-    <nav>
-        <div style="display: flex;">
-            <div><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></div>
-            <div><a asp-area="" asp-controller="Home" asp-action="About">About</a></div>
-            <div><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></div>
-        </div>
-    </nav>
-
-    <div>
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2019 - NetCore.Web</p>
-        </footer>
-    </div>
+    <xenon-layout heading="Rambler: @ViewData["Title"]">
+        <header>
+            <xenon-search></xenon-search>
+        </header>
+        <nav>
+            <nav-item icon="home" href="@Url.Action("Index", "Home")">Home</nav-item>
+            <nav-item icon="home" href="@Url.Action("About", "Home")">About</nav-item>
+            <nav-item icon="home" href="@Url.Action("Contact", "Home")">Contact</nav-item>
+        </nav>
+        <main>
+            <div style="display: flex; align-content: stretch; flex-direction: column;">
+                @RenderBody()
+                <div style="flex: 1 1 auto;"></div>
+                <footer>
+                    <p>&copy; 2019 - Machaqueso</p>
+                </footer>
+            </div>
+        </main>
+    </xenon-layout>
 
     @RenderSection("Scripts", required: false)
 </body>
